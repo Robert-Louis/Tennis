@@ -7,7 +7,7 @@ using Tennis.Application.Models;
 
 namespace Tennis.Application.Repository
 {
-    internal interface IPlayersRepository
+    public interface IPlayersRepository
     {
         Task<IEnumerable<Player>> GetAllAsync();
 

@@ -10,12 +10,12 @@ namespace Tennis.Contracts.Responses
     public class StatsResponse
     {
         [JsonProperty("winningCountry")]
-        public required string WinningCountry { get; init; }
+        public required CountryResponse WinningCountry { get; init; }
 
         [JsonProperty("playerIMC")]
-        public required int PlayerIMC { get; init; }
+        public required double PlayersAverageIMC { get; init; }
 
         [JsonProperty("playerMedian")]
-        public required int PlayerHeightMedian { get; init; }
+        public required double PlayersHeightMedian { get; init; }
     }
 }

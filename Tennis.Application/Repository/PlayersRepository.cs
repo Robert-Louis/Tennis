@@ -11,15 +11,14 @@ namespace Tennis.Application.Repository
 {
     public class PlayersRepository : IPlayersRepository
     {
-        string jsonFilePath = Helpers.GetPlayerJsonPath();
+        string jsonFile = Helpers.GetPlayerJson();
 
         private readonly IEnumerable<Player> _players;
 
         public PlayersRepository()
         {
-            var json = File.ReadAllText(jsonFilePath);
-            var players = JsonConvert.DeserializeObject<IEnumerable<Player>>(json);
-            _players = players is not null ? players : Enumerable.Empty<Player>();
+            var root = JsonConvert.DeserializeObject<Root>(jsonFile);
+            _players = root is not null ? root.Players : Enumerable.Empty<Player>();
         }
 
         public Task<IEnumerable<Player>> GetAllAsync()
@@ -33,9 +32,8 @@ namespace Tennis.Application.Repository
             return Task.FromResult(player);
         }
 
-        public Task<Stats?> GetStatsAsync()
+        public Task<Stats> GetStatsAsync()
         {
-            var test = _players.Select(p => p.Data.Last.Sum()).Sum();
             var countriesTotalScore = _players.GroupBy(p => p.Country)
                 .Select(g => (g.Key, g
                     .Select(p => p.Data.Last.Sum())
@@ -47,10 +45,12 @@ namespace Tennis.Application.Repository
 
             var stats = new Stats() 
             { 
-                PlayerHeightMedian = median, 
-                PlayerAverageIMC = averageIMC, 
-                WinningCountry = WinningCountry};
-            throw new NotImplementedException();
+                PlayersHeightMedian = median, 
+                PlayersAverageIMC = averageIMC, 
+                WinningCountry = WinningCountry
+            };
+
+            return Task.FromResult(stats); 
         }
     }
 }

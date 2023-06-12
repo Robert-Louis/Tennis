@@ -14,14 +14,16 @@ namespace Tennis.Application
 
         internal static string PlayersJson = "TennisData.json";
 
-        internal static string GetPlayerJsonPath()
+        internal static string GetPlayerJson()
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            string assemblyLocation = assembly.Location;
-            string assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
-            string filePath = Path.Combine(assemblyDirectory, RessourcesFolder, PlayersJson); // Replace with your file name and extension
+            var assembly = Assembly.GetExecutingAssembly();
+            var jsonPath = assembly.GetManifestResourceNames()
+              .Single(str => str.EndsWith(PlayersJson));
 
-            return filePath;
+            using Stream stream = assembly.GetManifestResourceStream(jsonPath);
+            using StreamReader reader = new StreamReader(stream);
+
+            return reader.ReadToEnd();
         }
 
         internal static double GetMedianFromInts(IEnumerable<int> ints) 
