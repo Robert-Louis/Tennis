@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using Tennis.Application.Models;
+﻿using Tennis.Application.Models;
 using Tennis.Contracts.Responses;
 
 namespace Tennis.Api.Mapping
