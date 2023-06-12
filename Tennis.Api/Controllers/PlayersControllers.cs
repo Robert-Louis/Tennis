@@ -7,17 +7,17 @@ namespace Tennis.Api.Controllers
     [ApiController]
     public class PlayersControllers : ControllerBase
     {
-        private readonly IPlayersRepository _moviesRepository;
+        private readonly IPlayersRepository _playersRepository;
 
-        public PlayersControllers(IPlayersRepository moviesRepository)
+        public PlayersControllers(IPlayersRepository playersRepository)
         {
-            _moviesRepository = moviesRepository;
+            _playersRepository = playersRepository;
         }
 
         [HttpGet(ApiEndpoints.Players.GetAll)]
         public async Task<IActionResult> GetAll()
         {
-            var players = await _moviesRepository.GetAllAsync();
+            var players = await _playersRepository.GetAllAsync();
 
             var response = players.Select(player => player.MapToResponse());
 
@@ -27,7 +27,7 @@ namespace Tennis.Api.Controllers
         [HttpGet(ApiEndpoints.Players.Get)]
         public async Task<IActionResult> Get([FromRoute] int id)
         {
-            var player = await _moviesRepository.GetAsync(id);
+            var player = await _playersRepository.GetAsync(id);
             if (player == null)
             {
                 return NotFound();
@@ -39,7 +39,7 @@ namespace Tennis.Api.Controllers
         [HttpGet(ApiEndpoints.Players.GetStats)]
         public async Task<IActionResult> GetStats()
         {
-            var stats = await _moviesRepository.GetStatsAsync();
+            var stats = await _playersRepository.GetStatsAsync();
             if (stats == null)
             {
                 return NotFound();
