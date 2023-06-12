@@ -1,6 +1,6 @@
 ﻿namespace Tennis.Application.Models
 {
-    internal class Data
+    public class PlayerData
     {
         public required int Rank { get; init; }
 

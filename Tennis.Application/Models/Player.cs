@@ -6,30 +6,22 @@ using System.Threading.Tasks;
 
 namespace Tennis.Application.Models
 {
-    internal class Player
+    public class Player
     {
-        [JsonProperty("id")]
         public required int Id { get; init; }
 
-        [JsonProperty("firstname")]
         public required string Firstname { get; init; }
 
-        [JsonProperty("lastname")]
         public required string Lastname { get; init; }
 
-        [JsonProperty("shortname")]
         public required string Shortname { get; init; }
 
-        [JsonProperty("sex")]
         public required string Sex { get; init; }
 
-        [JsonProperty("country")]
-        public required CountryResponse Country { get; init; }
+        public required Country Country { get; init; }
 
-        [JsonProperty("picture")]
         public required string Picture { get; init; }
 
-        [JsonProperty("data")]
-        public required DataResponse Data { get; init; }
+        public required PlayerData Data { get; init; }
     }
 }

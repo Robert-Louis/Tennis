@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tennis.Contracts.Responses
 {
-    public class StatResponse
+    public class StatsResponse
     {
         [JsonProperty("winningCountry")]
         public required string WinningCountry { get; init; }

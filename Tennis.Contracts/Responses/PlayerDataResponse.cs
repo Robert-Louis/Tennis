@@ -2,7 +2,7 @@
 
 namespace Tennis.Contracts.Responses
 {
-    public class DataResponse
+    public class PlayerDataResponse
     {
         [JsonProperty("rank")]
         public required int Rank { get; init; }

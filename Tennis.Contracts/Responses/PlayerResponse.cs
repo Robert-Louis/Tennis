@@ -26,6 +26,6 @@ namespace Tennis.Contracts.Responses
         public required string Picture { get; init; }
 
         [JsonProperty("data")]
-        public required DataResponse Data { get; init   ; }
+        public required PlayerDataResponse Data { get; init   ; }
     }
 }
